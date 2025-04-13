@@ -10,19 +10,24 @@ class Chronometer {
       this.intervalId= setInterval(()=>{
         this.currentTime+=1
         if (callback) callback()
-        console.log(this.currentTime)
-      },1000)
+        //console.log(this.currentTime)
+      console.log(this.split())
+      },10)
     
   }
 
   getMinutes() {
     // ... your code goes here
-    return Math.floor(this.currentTime/60)
+    return Math.floor((this.currentTime/100)/60) //corregir
   }
 
   getSeconds() {
     // ... your code goes here
-    return (this.currentTime % 60)
+    return Math.floor(this.currentTime / 100) //corregir
+  }
+
+  getMilliseconds(){
+    return Math.floor(this.currentTime % 100) //corregir
   }
 
   computeTwoDigitNumber(value) {
@@ -47,7 +52,7 @@ class Chronometer {
 
   split() {
     // ... your code goes here
-    return this.computeTwoDigitNumber(this.getMinutes()) + ":" + this.computeTwoDigitNumber(this.getSeconds())
+    return this.computeTwoDigitNumber(this.getMinutes()) + ":" + this.computeTwoDigitNumber(this.getSeconds()) + ":" + this.computeTwoDigitNumber(this.getMilliseconds())
   }
 }
 
@@ -60,9 +65,7 @@ if (typeof module !== 'undefined') {
   
 
 let reloj= new Chronometer
-reloj.computeTwoDigitNumber(4)
-reloj.computeTwoDigitNumber(0)
-reloj.computeTwoDigitNumber(15)
+reloj.start()
 
 
 
